@@ -24,5 +24,5 @@ Frontend: EJS, HTML, CSS
 
 Database: MongoDB (via Mongoose)
 
-Other Tools: Multer (file upload), bcrypt (password hashing), express-session (login session)
+
 
