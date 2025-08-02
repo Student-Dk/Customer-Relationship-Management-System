@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/dash.css">
+</head>
+<body>
+
+   <div class="Maindiv">
+<!-- ----------------------------//////////////////////////////////////////----------------------->
+    <div class="div1">
+
+<p>CRM </p>
+<div class="user-info">
+    <div class="user-img">
+        <img src="/images/back.png" alt="User Photo">
+    </div>
+    <div class="user-text">
+        <p>Welcome</p>
+        <p><%= user.name %></p>
+        <p class="online">● Online</p>
+    </div>
+</div>
+
+<nav>
+<ul>
+<li><a href="">BROWSE</a></li> 
+<li><a href="#">Dashboard</a></li>
+
+<li><a href="change_password/<%=user._id%>">Change password</a></li>
+<li><a href="profile/<%=user._id%>">Profile</a></li>
+<li><a href="">Request a Quote</a></li>
+<li><a href="">Create Ticket</a></li>
+
+<li><a href="">View Ticket</a></li>
+
+</ul>
+</nav>
+    </div>
+
+<!-- ---------------------------------------------------------------------------------Righ prat -->
+    <div class="div2">
+        <p>Dashboard</p>
+        <div>
+            <div><a href="">1|View Tickets</a></div>
+            <div><a href="">Get Quote</a></div>
+            <div><a href="">My Profile</a></div>
+            <div><a href="">Create</a></div>
+        </div>
+    </div>
+   </div>
+</body>
+</html>
