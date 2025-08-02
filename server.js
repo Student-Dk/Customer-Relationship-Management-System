@@ -5,6 +5,8 @@ const path = require('path');
 const bodyparser = require('body-parser');
 const Newuser = require('./models/user');
 const multer = require('multer');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const { render } = require('ejs');
 
 
@@ -48,9 +50,10 @@ app.get('/reg', (req, res) => {
 
 app.post('/submit', async (req, res) => {
     try {
-        const user = await Newuser.create(req.body);
-        // res.send(user);
-        // res.status(200).json({user});
+        const { name, contact, email, password } = req.body;
+        const hashedpassword = await bcrypt.hash(password, saltRounds);
+        const user = await fuser({ name, contact, email, password: hashedpassword });
+        await user.save();
         res.render('login');
     } catch (err) {
         res.status(400).json({ error: err.message });
@@ -75,10 +78,13 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     try {
-
+        
         const user = await Newuser.findOne({ email, password });
         const userdata = await Newuser.find();
-        if (!user) return res.status(400).json({ error: "invalid email and password" });
+       
+         if (!user) return res.status(400).json({ error: "invalid email " });
+        const isMatch = await bcrypt.compare(password, user1.password);
+        if (!isMatch) return res.status(400).json({ error: "invalid password" });
 
         if (user._id == '688a38f5bdf168b395ee94ee') return res.render('admin', { userdata });
         if (user._id != '688a38f5bdf168b395ee94ee') return res.render('dashboard',{user});
@@ -192,4 +198,5 @@ app.post('/updateprofile/:id',async(req,res)=>{
 //'''''''''''''''''''''''''
 app.listen(1200, () => {
     console.log("server is running")
+
 })
